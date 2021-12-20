@@ -1,14 +1,47 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import 'header.dart';
 
 class ResultPage extends StatelessWidget {
   const ResultPage({Key? key}) : super(key: key);
 
-  SizedBox space(double value) {
+  SizedBox Space(double value) {
     return SizedBox(
       height: value,
+    );
+  }
+
+  Divider Underline() {
+    return const Divider(
+      height: 20,
+      thickness: 1,
+      indent: 0,
+      endIndent: 0,
+      color: Colors.grey,
+    );
+  }
+
+  Container time(String hour, String version) {
+    return Container(
+        width: 150,
+        height: 75,
+        padding: const EdgeInsets.symmetric(vertical: 16.0),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: Colors.white,
+              width: 1,
+            )
+        ),
+        child: Column (
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(hour, style: const TextStyle(color: Colors.white, fontSize: 16),),
+            Text(version, style: const TextStyle(color: Colors.grey, fontSize: 14),),
+          ],
+        )
     );
   }
 
@@ -19,48 +52,38 @@ class ResultPage extends StatelessWidget {
       appBar: const WidgetAppBar(returnPage: true,),
       body: ListView(
         children: [
-          space(10),
-          Center(
+          Space(10),
+          const Center(
             child: Text("Thor: le monde des ténèbres", style: TextStyle(color: Colors.white, fontSize: 30),),
           ),
-          space(5),
-          Center(
+          Space(5),
+          const Center(
             child: Text("30 octobre 2013 ⸱ 1h52", style: TextStyle(color: Colors.grey, fontSize: 20),),
           ),
-          space(10),
+          Space(10),
+          const VideoWidget(),
+          Space(5),
           Container(
-            height: 150.0,
-            width: 150.0,
-            color: Colors.transparent,
-            child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                ),
-                child: new Center(
-                  child: new Text("Video player",
-                    style: TextStyle(fontSize: 22, color: Colors.black),
-                    textAlign: TextAlign.center,),
-                )),
-            ),
-          space(5),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-               Chip(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: const [
+                Chip(
                   backgroundColor: Colors.blue,
-                  label: const Text('Tous public'),
+                  label: Text('Tous public', style: TextStyle(color: Colors.white),),
                 ),
-               Chip(
+                Chip(
                   backgroundColor: Colors.red,
-                  label: const Text('Sci-fi'),
+                  label: Text('Sci-fi', style: TextStyle(color: Colors.white),),
                 ),
-               Chip(
+                Chip(
                   backgroundColor: Colors.green,
-                  label: const Text('Fantasy'),
+                  label: Text('Fantasy', style: TextStyle(color: Colors.white),),
                 ),
-            ],
+              ],
+            ),
           ),
-          space(5),
+          Space(5),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child : Row(
@@ -71,21 +94,21 @@ class ResultPage extends StatelessWidget {
                 // 3.5 / 10
                 // 28k
                 Expanded(child:
-                  Container(
-                    height: MediaQuery.of(context).size.height  * 0.10,
-                    child: Column(
-                      children: [
-                        Expanded(flex: 1, child: Text("IMDB Rating", style: TextStyle(color: Colors.white, fontSize: 18),),),
-                        Expanded(flex: 3, child: ListTile(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 4),
-                          horizontalTitleGap: 3,
-                          title: Text("6.8 / 10", style: TextStyle(color: Colors.white),),
-                          subtitle: Text("335k", style: TextStyle(color: Colors.grey),),
-                          leading: Icon(Icons.star, color: Colors.green,),
-                        ),),
-                      ],
-                    ),
-                  )
+                Container(
+                  height: MediaQuery.of(context).size.height  * 0.10,
+                  child: Column(
+                    children: [
+                      Expanded(flex: 1, child: Text("IMDB Rating", style: TextStyle(color: Colors.white, fontSize: 18),),),
+                      Expanded(flex: 3, child: ListTile(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 4),
+                        horizontalTitleGap: 3,
+                        title: Text("6.8 / 10", style: TextStyle(color: Colors.white),),
+                        subtitle: Text("335k", style: TextStyle(color: Colors.grey),),
+                        leading: Icon(Icons.star, color: Colors.green,),
+                      ),),
+                    ],
+                  ),
+                )
                 ),
                 Expanded(child:
                 Container(
@@ -123,21 +146,54 @@ class ResultPage extends StatelessWidget {
               ],
             ),
           ),
-          space(10),
+          Underline(),
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: 150,
+            child: Column(
+              children: [
+                const Text("Prochaine séance la plus proche", style: TextStyle(color: Colors.white, fontSize: 24),),
+                Expanded(
+                    child:
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child:
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              const Text("Cinema Pathé Le Mans", style: TextStyle(color: Color(0xffDB162F)),),
+                              time("20h15", "VF"),
+                            ],
+                          ),
+                          OutlinedButton(
+                            onPressed: null,
+                            child: const Text("RESERVE NOW", style: TextStyle(color: Color(0xffDB162F),),),
+                            style: OutlinedButton.styleFrom(
+                              side: const BorderSide(width: 1, color: Color(0xffDB162F)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                ),
+              ],
+            ),
+          ),
+          Underline(),
           DefaultTabController(
             length: 4, // length of tabs
             initialIndex: 0,
             child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: <Widget>[
               Container(
-                decoration : BoxDecoration(
-                    border: Border(top: BorderSide(color: Colors.grey, width: 0.5))
-                ),
                 child: TabBar(
                 labelColor: const Color(0xffDB162F),
                 unselectedLabelColor: Colors.white,
                 indicatorColor: const Color(0xffDB162F),
                 tabs: [
-                  Tab(icon: Icon(Icons.calendar_today_outlined),text: 'SEANCES'),
+                  Tab(icon: Icon(Icons.calendar_today_outlined),text: 'SHOWING'),
                   Tab(icon: Icon(Icons.people), text: 'CASTING'),
                   Tab(icon: Icon(Icons.star), text: 'RATINGS'),
                   Tab(icon: Icon(Icons.menu_book_outlined), text: 'NEWS'),
@@ -246,7 +302,7 @@ class ResultPage extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      child: Center(
+                      child: const Center(
                         child: Text('Display Tab 4', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
                       ),
                     ),
@@ -259,3 +315,35 @@ class ResultPage extends StatelessWidget {
     );
   }
 }
+
+class VideoWidget extends StatefulWidget {
+  const VideoWidget({Key? key}) : super(key: key);
+
+  @override
+  _VideoWidgetState createState() => _VideoWidgetState();
+}
+
+class _VideoWidgetState extends State<VideoWidget> {
+  final YoutubePlayerController _controller = YoutubePlayerController(
+    initialVideoId: 'npvJ9FTgZbM',
+    flags: const YoutubePlayerFlags(
+      mute: false,
+      autoPlay: false,
+    ),
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return YoutubePlayer(
+      controller: _controller,
+      showVideoProgressIndicator: true,
+    );
+}
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+}
+
