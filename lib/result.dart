@@ -200,114 +200,532 @@ class ResultPage extends StatelessWidget {
                 ],),
               ),
               Container(
-                  height: 400, //height of TabBarView
-                  child: TabBarView(children: <Widget>[
-                    Container(
-                      child: Center(
-                        child: Text('Display Tab 1', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                      ),
-                    ),
-                    Container(
-                      child:
-                        Column(
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 200,
-                              child: ListView(
-                                  scrollDirection: Axis.horizontal,
-                                  children: [
-                                    Container(
-                                      width: 200,
-                                      child: ListTile(
-                                        leading: Image.network('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg/220px-Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg'),
-                                        title: Text("Chris Hemsworth", style: TextStyle(color: Colors.white,),),
-                                        subtitle: Text("Thor", style: TextStyle(color: Colors.grey,),),
-                                      ),
+                height: 400, //height of TabBarView
+                child: TabBarView(
+                  children: <Widget>[
+                    // 1
+                    Column(
+                      children : [
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Prochaines séances", style: TextStyle(color: Colors.white),),
+                              Row(
+                                children: [
+                                  Icon(Icons.location_on_outlined, color: Color(0xffDB162F),),
+                                  DropdownButton(
+                                    value: "Le plus proche",
+                                    dropdownColor: Color(0xffDB162F),
+                                    items: ['Le plus proche', 'Paris', 'Le Mans'].map<DropdownMenuItem<String>>((String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value, style: TextStyle(color: Colors.white),),
+                                      );
+                                    }).toList(),
+                                    onChanged: null,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                            child: DefaultTabController(
+                              length: 5,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: <Widget>[
+                                Container(
+                                  child: TabBar(
+                                    labelColor: const Color(0xFF0E1111),
+                                    unselectedLabelColor:  const Color(0xFF0E1111),
+                                    indicatorColor: const Color(0xffDB162F),
+                                    tabs: [
+                                      Tab(text: 'WEN.'),
+                                      Tab(text: 'THU.'),
+                                      Tab(text: 'FRI.'),
+                                      Tab(text: 'SAT.'),
+                                      Tab(text: 'SUN.',),
+                                    ],
+                                  ),
+                                  color: Colors.white,
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    child: TabBarView(
+                                      children: [
+                                        Container(
+                                          padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text("Cinéma Pathé Le Mans", style: TextStyle(color: Colors.white),),
+                                              Space(16),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                children: [
+                                                  time("17h55", "VF"),
+                                                  Padding(padding: EdgeInsets.symmetric(horizontal: 16.0)),
+                                                  time("22h05", "VOST")
+                                                ],
+                                              ),
+                                              Space(32),
+                                              time("20h30", "VF"),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          child: Center(
+                                            child: Text('2', style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
+                                          ),
+                                        ),
+                                        Container(
+                                          child: Center(
+                                            child: Text('3', style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
+                                          ),
+                                        ),
+                                        Container(
+                                          child: Center(
+                                            child: Text('4', style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
+                                          ),
+                                        ),
+                                        Container(
+                                          child: Center(
+                                            child: Text('5', style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Container(
-                                      width: 200,
-                                      child: ListTile(
-                                        leading: Image.network('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg/220px-Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg'),
-                                        title: Text("Chris Hemsworth", style: TextStyle(color: Colors.white,),),
-                                        subtitle: Text("Thor", style: TextStyle(color: Colors.grey,),),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 200,
-                                      child: ListTile(
-                                        leading: Image.network('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg/220px-Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg'),
-                                        title: Text("Chris Hemsworth", style: TextStyle(color: Colors.white,),),
-                                        subtitle: Text("Thor", style: TextStyle(color: Colors.grey,),),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 200,
-                                      child: ListTile(
-                                        leading: Image.network('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg/220px-Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg'),
-                                        title: Text("Chris Hemsworth", style: TextStyle(color: Colors.white,),),
-                                        subtitle: Text("Thor", style: TextStyle(color: Colors.grey,),),
-                                      ),
-                                    ),
-                                  ]
+                                  ),
+                                ),
+                                ],
                               ),
                             ),
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 200,
-                              child: ListView(
+                        ),
+                      ],
+                    ),
+                    // 2
+                    Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(padding: EdgeInsets.symmetric(vertical: 8.0),),
+                              const Text("Actors", style: TextStyle(color: Colors.white),),
+                              Padding(padding: EdgeInsets.symmetric(vertical: 8.0),),
+                              SizedBox(
+                                height: 70,
+                                child: ListView(
                                   scrollDirection: Axis.horizontal,
                                   children: [
-                                    Container(
-                                      width: 200,
-                                      child: ListTile(
-                                        leading: Image.network('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg/220px-Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg'),
-                                        title: Text("Chris Hemsworth", style: TextStyle(color: Colors.white,),),
-                                        subtitle: Text("Thor", style: TextStyle(color: Colors.grey,),),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 200,
-                                      child: ListTile(
-                                        leading: Image.network('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg/220px-Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg'),
-                                        title: Text("Chris Hemsworth", style: TextStyle(color: Colors.white,),),
-                                        subtitle: Text("Thor", style: TextStyle(color: Colors.grey,),),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 200,
-                                      child: ListTile(
-                                        leading: Image.network('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg/220px-Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg'),
-                                        title: Text("Chris Hemsworth", style: TextStyle(color: Colors.white,),),
-                                        subtitle: Text("Thor", style: TextStyle(color: Colors.grey,),),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 200,
-                                      child: ListTile(
-                                        leading: Image.network('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg/220px-Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg'),
-                                        title: Text("Chris Hemsworth", style: TextStyle(color: Colors.white,),),
-                                        subtitle: Text("Thor", style: TextStyle(color: Colors.grey,),),
-                                      ),
-                                    ),
-                                  ]
+                                    Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            SizedBox(
+                                              width: 56,
+                                              height: 56,
+                                              child: CircleAvatar(
+                                                radius: 56,
+                                                child: ClipRRect(
+                                                  borderRadius: BorderRadius.circular(100),
+                                                  child: Image.network(
+                                                    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg/220px-Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg',
+                                                    fit: BoxFit.cover,
+                                                    width: 56,
+                                                    height: 56,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Padding(padding: EdgeInsets.symmetric(horizontal: 8.0)),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text("Chris Hemsworth", style: TextStyle(color: Colors.white,),),
+                                                Text("Thor", style: TextStyle(color: Colors.grey,),),
+                                              ],
+                                            ),
+                                            Padding(padding: EdgeInsets.symmetric(horizontal: 8.0)),
+                                          ],
+                                        ),
+                                    Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            SizedBox(
+                                              width: 56,
+                                              height: 56,
+                                              child: CircleAvatar(
+                                                radius: 56,
+                                                child: ClipRRect(
+                                                  borderRadius: BorderRadius.circular(100),
+                                                  child: Image.network(
+                                                    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg/220px-Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg',
+                                                    fit: BoxFit.cover,
+                                                    width: 56,
+                                                    height: 56,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Padding(padding: EdgeInsets.symmetric(horizontal: 8.0)),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text("Chris Hemsworth", style: TextStyle(color: Colors.white,),),
+                                                Text("Thor", style: TextStyle(color: Colors.grey,),),
+                                              ],
+                                            ),
+                                            Padding(padding: EdgeInsets.symmetric(horizontal: 8.0)),
+                                          ],
+                                        ),
+                                    Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            SizedBox(
+                                              width: 56,
+                                              height: 56,
+                                              child: CircleAvatar(
+                                                radius: 56,
+                                                child: ClipRRect(
+                                                  borderRadius: BorderRadius.circular(100),
+                                                  child: Image.network(
+                                                    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg/220px-Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg',
+                                                    fit: BoxFit.cover,
+                                                    width: 56,
+                                                    height: 56,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Padding(padding: EdgeInsets.symmetric(horizontal: 8.0)),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text("Chris Hemsworth", style: TextStyle(color: Colors.white,),),
+                                                Text("Thor", style: TextStyle(color: Colors.grey,),),
+                                              ],
+                                            ),
+                                            Padding(padding: EdgeInsets.symmetric(horizontal: 8.0)),
+                                          ],
+                                        ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(padding: EdgeInsets.symmetric(vertical: 8.0),),
+                              const Text("Film crew", style: TextStyle(color: Colors.white),),
+                              Padding(padding: EdgeInsets.symmetric(vertical: 8.0),),
+                              SizedBox(
+                                height: 70,
+                                child: ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        SizedBox(
+                                          width: 56,
+                                          height: 56,
+                                          child: CircleAvatar(
+                                            radius: 56,
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.circular(100),
+                                              child: Image.network(
+                                                'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg/220px-Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg',
+                                                fit: BoxFit.cover,
+                                                width: 56,
+                                                height: 56,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(padding: EdgeInsets.symmetric(horizontal: 8.0)),
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("Chris Hemsworth", style: TextStyle(color: Colors.white,),),
+                                            Text("Thor", style: TextStyle(color: Colors.grey,),),
+                                          ],
+                                        ),
+                                        Padding(padding: EdgeInsets.symmetric(horizontal: 8.0)),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        SizedBox(
+                                          width: 56,
+                                          height: 56,
+                                          child: CircleAvatar(
+                                            radius: 56,
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.circular(100),
+                                              child: Image.network(
+                                                'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg/220px-Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg',
+                                                fit: BoxFit.cover,
+                                                width: 56,
+                                                height: 56,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(padding: EdgeInsets.symmetric(horizontal: 8.0)),
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("Chris Hemsworth", style: TextStyle(color: Colors.white,),),
+                                            Text("Thor", style: TextStyle(color: Colors.grey,),),
+                                          ],
+                                        ),
+                                        Padding(padding: EdgeInsets.symmetric(horizontal: 8.0)),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        SizedBox(
+                                          width: 56,
+                                          height: 56,
+                                          child: CircleAvatar(
+                                            radius: 56,
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.circular(100),
+                                              child: Image.network(
+                                                'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg/220px-Chris_Hemsworth_by_Gage_Skidmore_2_%28cropped%29.jpg',
+                                                fit: BoxFit.cover,
+                                                width: 56,
+                                                height: 56,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(padding: EdgeInsets.symmetric(horizontal: 8.0)),
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("Chris Hemsworth", style: TextStyle(color: Colors.white,),),
+                                            Text("Thor", style: TextStyle(color: Colors.grey,),),
+                                          ],
+                                        ),
+                                        Padding(padding: EdgeInsets.symmetric(horizontal: 8.0)),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                    Container(
-                      child: Center(
-                        child: Text('Display Tab 3', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                      ),
+                    // 3
+                    Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(padding: EdgeInsets.symmetric(vertical: 8.0),),
+                              Row (
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text("Reviews" , style: TextStyle(color: Colors.white),),
+                                  const Text("View all", style: TextStyle(color: Colors.grey),),
+                                ],
+                              ),
+                              Padding(padding: EdgeInsets.symmetric(vertical: 8.0),),
+                              SizedBox(
+                                height: 150,
+                                child: ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: [
+                                    Card(
+                                      color: Colors.transparent,
+                                      shape: RoundedRectangleBorder(
+                                        side: BorderSide(color: Color(0x77DB162F), width: 1),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                                        width: 300,
+                                        height: 150,
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("9 stars", style: TextStyle(color: Colors.white),),
+                                            Text("Bigger, bolder, darker and ...better!", style: TextStyle(color: Colors.white),),
+                                            Text("This is in no way a knock on the first Thor because I enjoyed it a lot, but, as said with Captain America: The Winter Soldier, Thor: The Dark World impressed me more. The look of the film is wonderful, Asgard is jus...", style: TextStyle(color: Colors.grey),),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Card(
+                                      color: Colors.transparent,
+                                      shape: RoundedRectangleBorder(
+                                        side: BorderSide(color: Color(0x77DB162F), width: 1),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                                        width: 300,
+                                        height: 150,
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("9 stars", style: TextStyle(color: Colors.white),),
+                                            Text("Bigger, bolder, darker and ...better!", style: TextStyle(color: Colors.white),),
+                                            Text("This is in no way a knock on the first Thor because I enjoyed it a lot, but, as said with Captain America: The Winter Soldier, Thor: The Dark World impressed me more. The look of the film is wonderful, Asgard is jus...", style: TextStyle(color: Colors.grey),),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Card(
+                                      color: Colors.transparent,
+                                      shape: RoundedRectangleBorder(
+                                        side: BorderSide(color: Color(0x77DB162F), width: 1),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                                        width: 300,
+                                        height: 150,
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("9 stars", style: TextStyle(color: Colors.white),),
+                                            Text("Bigger, bolder, darker and ...better!", style: TextStyle(color: Colors.white),),
+                                            Text("This is in no way a knock on the first Thor because I enjoyed it a lot, but, as said with Captain America: The Winter Soldier, Thor: The Dark World impressed me more. The look of the film is wonderful, Asgard is jus...", style: TextStyle(color: Colors.grey),),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(padding: EdgeInsets.symmetric(vertical: 8.0),),
+                              Row (
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text("Critic Reviews" , style: TextStyle(color: Colors.white),),
+                                  const Text("View all", style: TextStyle(color: Colors.grey),),
+                                ],
+                              ),
+                              Padding(padding: EdgeInsets.symmetric(vertical: 8.0),),
+                              SizedBox(
+                                height: 150,
+                                child: ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: [
+                                    Card(
+                                      color: Colors.transparent,
+                                      shape: RoundedRectangleBorder(
+                                        side: BorderSide(color: Color(0x77DB162F), width: 1),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                                        width: 300,
+                                        height: 150,
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("9 stars", style: TextStyle(color: Colors.white),),
+                                            Text("Bigger, bolder, darker and ...better!", style: TextStyle(color: Colors.white),),
+                                            Text("This is in no way a knock on the first Thor because I enjoyed it a lot, but, as said with Captain America: The Winter Soldier, Thor: The Dark World impressed me more. The look of the film is wonderful, Asgard is jus...", style: TextStyle(color: Colors.grey),),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Card(
+                                      color: Colors.transparent,
+                                      shape: RoundedRectangleBorder(
+                                        side: BorderSide(color: Color(0x77DB162F), width: 1),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                                        width: 300,
+                                        height: 150,
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("9 stars", style: TextStyle(color: Colors.white),),
+                                            Text("Bigger, bolder, darker and ...better!", style: TextStyle(color: Colors.white),),
+                                            Text("This is in no way a knock on the first Thor because I enjoyed it a lot, but, as said with Captain America: The Winter Soldier, Thor: The Dark World impressed me more. The look of the film is wonderful, Asgard is jus...", style: TextStyle(color: Colors.grey),),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Card(
+                                      color: Colors.transparent,
+                                      shape: RoundedRectangleBorder(
+                                        side: BorderSide(color: Color(0x77DB162F), width: 1),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                                        width: 300,
+                                        height: 150,
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text("9 stars", style: TextStyle(color: Colors.white),),
+                                            Text("Bigger, bolder, darker and ...better!", style: TextStyle(color: Colors.white),),
+                                            Text("This is in no way a knock on the first Thor because I enjoyed it a lot, but, as said with Captain America: The Winter Soldier, Thor: The Dark World impressed me more. The look of the film is wonderful, Asgard is jus...", style: TextStyle(color: Colors.grey),),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
+                    // 4
                     Container(
                       child: const Center(
                         child: Text('Display Tab 4', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
                       ),
                     ),
-                  ])
-              )
+                  ],
+                ),
+              ),
             ],
           ),
         )]
