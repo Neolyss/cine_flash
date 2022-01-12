@@ -51,6 +51,7 @@ class _WidgetDrawerState extends State<WidgetDrawer> {
 
   var menuElements = [
     const ListTile(leading: Icon(Icons.home, color: Color(0xFF0E1111)), title: Text("Home", style: TextStyle(color: Color(0xFF0E1111)))),
+    const ListTile(leading: Icon(Icons.confirmation_num_outlined, color: Color(0xFF0E1111)), title: Text("Tickets", style: TextStyle(color: Color(0xFF0E1111)))),
     const ListTile(leading: Icon(Icons.settings_outlined, color: Color(0xFF0E1111)), title: Text("Settings", style: TextStyle(color: Color(0xFF0E1111)))),
     const ListTile(leading: Icon(Icons.people, color: Color(0xFF0E1111)), title: Text("About us", style: TextStyle(color: Color(0xFF0E1111)))),
   ];
