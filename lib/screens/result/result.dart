@@ -2,22 +2,23 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
-import 'package:cine_flash/reviews.dart';
-import 'package:cine_flash/showing.dart';
-import 'package:cine_flash/trailer.dart';
+import 'package:cine_flash/screens/result/reviews.dart';
+import 'package:cine_flash/screens/main/main_screens.dart';
+import 'package:cine_flash/screens/result/showing.dart';
+import 'package:cine_flash/models/trailer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'film.dart';
-import 'header.dart';
-import 'main.dart';
+import '../../models/film.dart';
+import '../../components/header.dart';
+import '../../main.dart';
 import 'dart:developer' as developer;
 
-class ResultPage extends StatelessWidget {
-  const ResultPage({Key? key}) : super(key: key);
+class ResultScreen extends StatelessWidget {
+  const ResultScreen({Key? key}) : super(key: key);
 
   static const routeName = '/result';
 
