@@ -32,6 +32,7 @@ dependencies:
   camera:
   path_provider:
   path:
+  flutter_mobile_vision_2:
 
   auto_size_text: ^3.0.0
   # The following adds the Cupertino Icons font to your application.

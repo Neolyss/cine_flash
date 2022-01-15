@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'header.dart';
 import 'package:camera/camera.dart';
+import 'package:flutter_mobile_vision_2/flutter_mobile_vision_2.dart';
 
+  var cameraa;
 
 
 Future<void> main()  async{
@@ -14,6 +16,8 @@ Future<void> main()  async{
 
   final firstCamera = cameras.first;
   //WidgetsFluttterBinding.ensureInitialized();
+  cameraa = firstCamera;
+
   runApp(MyApp(camera: firstCamera));
 }
 
@@ -86,11 +90,17 @@ class _MyHomePageState extends State<MyHomePage> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
 
+  int _ocrCamera = FlutterMobileVision.CAMERA_BACK;
+  late int cc;
+  String _text = "TEXT";
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
+
+
 
   @override
   void initState(){
@@ -99,6 +109,13 @@ class _MyHomePageState extends State<MyHomePage> {
     _controller = CameraController(widget.camera ,ResolutionPreset.max,);
 
     _initializeControllerFuture = _controller.initialize();
+
+    cc = _controller.cameraId;
+    /*
+    FlutterMobileVision.start().then((previewSizes) => setState(() {
+        _previewOcr = previewSizes[_controller].first;
+    }));*/
+
   }
 
   @override
@@ -107,6 +124,24 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
+  Future<Null> _read() async{
+    List<OcrText> texts = [];
+    try{
+      texts = await FlutterMobileVision.read(
+        camera: _ocrCamera,
+        waitTap: true,
+
+        //camera: _controller.cameraId,
+      );
+
+      setState((){
+        _text = texts[0].value;
+      });
+      print("Mon text : "+_text);
+    }on Exception{
+      texts.add(new OcrText('Failed to recognize text'));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,6 +152,9 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context,snapshot){
           if(snapshot.connectionState == ConnectionState.done){
             return CameraPreview(_controller);
+
+            //return CameraPreview(_read());
+
           }else{
             return const Center(child: CircularProgressIndicator());
           }
@@ -125,14 +163,15 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           try{
-            await _initializeControllerFuture;
 
+            await _initializeControllerFuture;
+            _read();
             final image = await _controller.takePicture();
 
           }catch(e){
             print(e);
           }
-          Navigator.pushNamed(context, '/result');
+          //Navigator.pushNamed(context, '/result');
         },
         tooltip: 'Increment',
         child: const Icon(Icons.search_outlined),
