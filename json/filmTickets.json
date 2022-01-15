@@ -1,0 +1,22 @@
+{
+  "tickets": [
+    {
+      "image": "https://imdb-api.com/images/original/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_Ratio0.6791_AL_.jpg",
+      "title": "Iron Man",
+      "date": "30/04/2008",
+      "hour": "20:00",
+      "theater": "Cinéma Le Kid",
+      "room": "Salle 1",
+      "version" : "VF"
+    },
+    {
+      "image": "https://imdb-api.com/images/original/MV5BMTQyNzAwOTUxOF5BMl5BanBnXkFtZTcwMTE0OTc5OQ@@._V1_Ratio0.7273_AL_.jpg",
+      "title": "Thor: The Dark World",
+      "date": "06/11/2013",
+      "hour": "20:30",
+      "theater": "Cinéma Pathé Le Mans",
+      "room": "Salle 10",
+      "version" : "VF"
+    }
+  ]
+}
