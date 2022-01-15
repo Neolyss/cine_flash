@@ -1,16 +1,26 @@
-import 'package:cine_flash/result.dart';
+import 'package:cine_flash/screens/film/film_screen.dart';
+import 'package:cine_flash/screens/result/result.dart';
+import 'package:cine_flash/screens/main/history_screen.dart';
+import 'package:cine_flash/screens/main/library_screen.dart';
+import 'package:cine_flash/screens/main/main_screen.dart';
+import 'package:cine_flash/screens/main/main_screens.dart';
+import 'package:cine_flash/screens/settings_screen.dart';
+import 'package:cine_flash/screens/tickets_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'header.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter_mobile_vision_2/flutter_mobile_vision_2.dart';
+import 'components/header.dart';
+import 'dart:developer' as developer;
 
-  var cameraa;
-
+var cameraa;
 
 Future<void> main()  async{
-
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
 
   final cameras = await availableCameras();//Acquisition de la list de cameras valide sur le périphérique
 
@@ -20,11 +30,8 @@ Future<void> main()  async{
 
   runApp(MyApp(camera: firstCamera));
 }
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key,
-    required this.camera,
-  }) : super(key: key);
+class CineFlash extends StatelessWidget {
+  const CineFlash({Key? key, required this.camera,}) : super(key: key);
 
   final CameraDescription camera;
   // This widget is the root of your application.
@@ -39,14 +46,23 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white,
         ),
         primarySwatch: Colors.red,
+        scaffoldBackgroundColor: const Color(0xFF0E1111),
       ),
-      initialRoute: "/",
+      initialRoute: HomeScreen.routeName,
       routes: {
-        '/' : (context) => MyHomePage(camera : this.camera),
-        '/result' : (context) => const ResultPage(),
+        HomeScreen.routeName : (context) => const HomeScreen(camera : this.camera),
+        FilmScreen.routeName : (context) => const FilmScreen(),
+        SettingsScreen.routeName : (context) => const SettingsScreen(),
+        TicketsScreen.routeName : (context) => const TicketsScreen(),
       },
     );
   }
+}
+
+class ScreenArguments {
+  final String title;
+
+  ScreenArguments(this.title);
 }
 
 class MyHomePage extends StatefulWidget {
@@ -59,14 +75,6 @@ class MyHomePage extends StatefulWidget {
   // that it has a State object (defined below) that contains fields that affect
   // how it looks.
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
 
 class TakePictureScreen extends StatefulWidget {
   const TakePictureScreen({Key? key,
@@ -236,5 +244,3 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
 }*/
-
-

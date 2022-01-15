@@ -19,7 +19,7 @@ Future<void> main()  async{
 
     final firstCamera = cameras.first;
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp(camera: firstCamera));
+    await tester.pumpWidget(CineFlash(camera: firstCamera));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

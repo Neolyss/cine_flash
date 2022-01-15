@@ -1,0 +1,16 @@
+{
+  "films": [
+    {
+      "id": "tt1020210",
+      "title": "Avengers",
+      "image": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQRldT4RKBlDSiPcwHAZbLAUNqsGCatYti-CLyeCxCsG9iADdMq",
+      "imDbRating" : "10.0"
+    },
+    {
+      "id": "tt7281990",
+      "title": "Spiderman",
+      "image": "https://fr.web.img4.acsta.net/pictures/21/11/16/10/01/4860598.jpg",
+      "imDbRating" : "8.0"
+    }
+  ]
+}
