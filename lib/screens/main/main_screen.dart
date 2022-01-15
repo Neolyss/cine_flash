@@ -1,3 +1,4 @@
+import 'package:cine_flash/screens/film/film_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
@@ -30,7 +31,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/result', arguments: ScreenArguments(filmTitle));
+          Navigator.pushNamed(context, FilmScreen.routeName, arguments: ScreenArguments(filmTitle));
         },
         tooltip: 'Increment',
         child: const Icon(Icons.search_outlined),
@@ -61,7 +62,7 @@ class _MainScreenState extends State<MainScreen> {
                       // If the form is valid, display a snackbar. In the real world,
                       // you'd often call a server or save the information in a database.
                       developer.log(myController.text);
-                      Navigator.pushNamed(context, '/result', arguments: ScreenArguments(myController.text));
+                      Navigator.pushNamed(context, FilmScreen.routeName, arguments: ScreenArguments(myController.text));
                     }
                   },
                   child: const Text('Submit'),

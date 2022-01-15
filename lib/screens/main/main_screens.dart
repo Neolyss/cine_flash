@@ -61,9 +61,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-class ScreenArguments {
-  final String title;
-
-  ScreenArguments(this.title);
-}

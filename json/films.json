@@ -1,1 +1,16 @@
-{"films":[{"name": "Avengers", "link": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQRldT4RKBlDSiPcwHAZbLAUNqsGCatYti-CLyeCxCsG9iADdMq"}, {"name": "Spiderman", "link": "https://fr.web.img4.acsta.net/pictures/21/11/16/10/01/4860598.jpg"}, {"name":"Games of thrones","link": "https://m.media-amazon.com/images/I/91DjGXn7jXL._AC_SL1500_.jpg"},{"name":"Robocop","link":"https://i.pinimg.com/736x/23/30/f6/2330f60d29c7764c907ec32c3f51f7d8.jpg"},{"name": "One piece","link": "https://cdn.radiofrance.fr/s3/cruiser-production/2021/11/10b0b001-6e3d-496f-afc3-2f5524a3d334/1200x680_onep-mea.jpg"},{"name":"Baki","link": "https://media.senscritique.com/media/000020174664/source_big/Baki_Son_of_Ogre.jpg"}]}
+{
+  "films": [
+    {
+      "id": "tt1020210",
+      "title": "Avengers",
+      "image": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQRldT4RKBlDSiPcwHAZbLAUNqsGCatYti-CLyeCxCsG9iADdMq",
+      "imDbRating" : "10.0"
+    },
+    {
+      "id": "tt7281990",
+      "title": "Spiderman",
+      "image": "https://fr.web.img4.acsta.net/pictures/21/11/16/10/01/4860598.jpg",
+      "imDbRating" : "8.0"
+    }
+  ]
+}

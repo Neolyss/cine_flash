@@ -1,3 +1,4 @@
+import 'package:cine_flash/screens/film/film_screen.dart';
 import 'package:cine_flash/screens/result/result.dart';
 import 'package:cine_flash/screens/main/history_screen.dart';
 import 'package:cine_flash/screens/main/library_screen.dart';
@@ -36,9 +37,15 @@ class CineFlash extends StatelessWidget {
       initialRoute: HomeScreen.routeName,
       routes: {
         HomeScreen.routeName : (context) => const HomeScreen(),
-        ResultScreen.routeName : (context) => const ResultScreen(),
+        FilmScreen.routeName : (context) => const FilmScreen(),
       },
     );
   }
+}
+
+class ScreenArguments {
+  final String title;
+
+  ScreenArguments(this.title);
 }
 
