@@ -1,4 +1,9 @@
+import 'package:cine_flash/screens/main/main_screens.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer' as developer;
+
+import '../screens/settings_screen.dart';
+import '../screens/tickets_screen.dart';
 
 class WidgetAppBar extends StatefulWidget implements PreferredSizeWidget {
   @override
@@ -50,17 +55,18 @@ class WidgetDrawer extends StatefulWidget {
 class _WidgetDrawerState extends State<WidgetDrawer> {
 
   var menuElements = [
-    const ListTile(leading: Icon(Icons.home, color: Color(0xFF0E1111)), title: Text("Home", style: TextStyle(color: Color(0xFF0E1111)))),
-    const ListTile(leading: Icon(Icons.confirmation_num_outlined, color: Color(0xFF0E1111)), title: Text("Tickets", style: TextStyle(color: Color(0xFF0E1111)))),
-    const ListTile(leading: Icon(Icons.settings_outlined, color: Color(0xFF0E1111)), title: Text("Settings", style: TextStyle(color: Color(0xFF0E1111)))),
-    const ListTile(leading: Icon(Icons.people, color: Color(0xFF0E1111)), title: Text("About us", style: TextStyle(color: Color(0xFF0E1111)))),
+    const WidgetButtonDrawer(icon: Icons.home, title: "Home", route: HomeScreen.routeName,),
+    const WidgetButtonDrawer(icon: Icons.confirmation_num_outlined, title: "Tickets", route: TicketsScreen.routeName,),
+    const WidgetButtonDrawer(icon: Icons.settings_outlined, title: "Settings", route: SettingsScreen.routeName,),
+    const WidgetButtonDrawer(icon: Icons.people, title: "About us", route: HomeScreen.routeName,),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.white,
-      // backgroundColor: const Color(0xffDB162F),
+      //backgroundColor: Colors.white,
+      //backgroundColor: const Color(0xffDB162F),
+      backgroundColor: const Color(0xFF0E1111),
       child : ListView (
         children: [
           Container(
@@ -94,7 +100,8 @@ class _WidgetDrawerState extends State<WidgetDrawer> {
                 },
                 separatorBuilder: (context, index) {
                   return const Divider(
-                    color: Color(0x66DB162F),
+                    //color: Colors.white,
+                    color: Color(0xDDDB162F),
                     height: 1,
                     indent: 10,
                     endIndent: 10,
@@ -107,6 +114,34 @@ class _WidgetDrawerState extends State<WidgetDrawer> {
       ),
     );
   }
+}
+
+class WidgetButtonDrawer extends StatefulWidget {
+  const WidgetButtonDrawer({Key? key, required this.icon, required this.title, required this.route}) : super(key: key);
+
+  final IconData icon;
+  final String title;
+  final String route;
+
+  @override
+  _WidgetButtonDrawerState createState() => _WidgetButtonDrawerState();
+}
+
+class _WidgetButtonDrawerState extends State<WidgetButtonDrawer> {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, widget.route);
+      },
+      child: ListTile(
+        leading: Icon(widget.icon, color: Color(0xDDDB162F)),
+        title: Text(widget.title, style: TextStyle(color: Color(0xffffffff))),
+      ),
+    );
+  }
+}
+
 /*
 * Container(padding: EdgeInsets.zero,
             margin: EdgeInsets.zero,
@@ -123,7 +158,7 @@ class _WidgetDrawerState extends State<WidgetDrawer> {
                   Text("CineFlash", style: TextStyle(color: Colors.white),)
                 ],
               ),),),*/
-  /* ListView.separated(
+/* ListView.separated(
         itemCount: menuElements.length,
         itemBuilder: (BuildContext ctxt, int index) {
           return menuElements[index];
@@ -133,8 +168,7 @@ class _WidgetDrawerState extends State<WidgetDrawer> {
             color: Theme.of(context).primaryColor,
           );
         }),*/
-
-        /*child: ListView(
+/*child: ListView(
           padding: EdgeInsets.zero,
           children: [
             Container(
@@ -157,8 +191,6 @@ class _WidgetDrawerState extends State<WidgetDrawer> {
             ),
           ],
         ),*/
-}
-
 /*
 *ListView(
             Container(

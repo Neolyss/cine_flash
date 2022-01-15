@@ -4,6 +4,8 @@ import 'package:cine_flash/screens/main/history_screen.dart';
 import 'package:cine_flash/screens/main/library_screen.dart';
 import 'package:cine_flash/screens/main/main_screen.dart';
 import 'package:cine_flash/screens/main/main_screens.dart';
+import 'package:cine_flash/screens/settings_screen.dart';
+import 'package:cine_flash/screens/tickets_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'components/header.dart';
@@ -38,6 +40,8 @@ class CineFlash extends StatelessWidget {
       routes: {
         HomeScreen.routeName : (context) => const HomeScreen(),
         FilmScreen.routeName : (context) => const FilmScreen(),
+        SettingsScreen.routeName : (context) => const SettingsScreen(),
+        TicketsScreen.routeName : (context) => const TicketsScreen(),
       },
     );
   }
