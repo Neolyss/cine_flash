@@ -9,11 +9,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:cine_flash/main.dart';
+import 'package:camera/camera.dart';
 
-void main() {
+Future<void> main()  async{
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    WidgetsFlutterBinding.ensureInitialized();
+
+    final cameras = await availableCameras();//Acquisition de la list de cameras valide sur le périphérique
+
+    final firstCamera = cameras.first;
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const CineFlash());
+    await tester.pumpWidget(CineFlash(camera: firstCamera));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

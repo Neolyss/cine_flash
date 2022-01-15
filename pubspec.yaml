@@ -29,6 +29,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  camera:
+  path_provider:
+  path:
+  flutter_mobile_vision_2:
 
   auto_size_text: ^3.0.0
   youtube_player_flutter: ^8.0.0
