@@ -71,17 +71,15 @@ class _MainScreenState extends State<MainScreen> {
             try {
               await _initializeControllerFuture;
               //_read();
-              final image = await _controller.takePicture();
-              const String title = "Iron Man";
-              //String id = await findFilm(title);
-              const String id = "tt0371746";
+              //final image = await _controller.takePicture();
+              const String title = "Guardians of the Galaxy Vol.2";
+              String id = await findFilm(title);
+              //const String id = "tt0371746";
               Navigator.pushNamed(context, FilmScreen.routeName, arguments: ScreenArguments(id));
             } catch (e) {
               print(e);
             }
-          },
-            //Navigator.pushNamed(context, '/result');
-          //Navigator.pushNamed(context, FilmScreen.routeName, arguments: ScreenArguments(filmTitle));
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.search_outlined),
         backgroundColor: const Color(0xffDB162F),

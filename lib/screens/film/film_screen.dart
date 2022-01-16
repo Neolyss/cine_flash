@@ -75,7 +75,7 @@ class _FilmViewState extends State<FilmView> {
                   var inputFormat = DateFormat('yyyy-MM-dd');
                   var outputFormat = DateFormat('dd LLLL yyyy');
                   var date = outputFormat.format(inputFormat.parse(snapshot.data!.date));
-                  var timeDuration =DateFormat("h'h' m'mins'").parse(snapshot.data!.duration);
+                  var timeDuration =DateFormat("h'h' mm'min'").parse(snapshot.data!.duration);
                   var time = DateFormat("h'h'mm").format(timeDuration);
                   return Column(
                     children: [
@@ -140,7 +140,7 @@ class _FilmViewState extends State<FilmView> {
                                 // 4
                                 Container(
                                   child: const Center(
-                                    child: Text('Display Tab 4', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                                    child: Text('In progress sorry for inconvenience', style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
                                   ),
                                 ),
                               ],

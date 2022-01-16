@@ -50,6 +50,7 @@ class _ActorScrollViewState extends State<ActorScrollView> {
                         ),
                       ),
                     ),
+                    const Padding(padding: EdgeInsets.symmetric(horizontal: 4.0)),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,6 +122,7 @@ class _CrewScrollViewState extends State<CrewScrollView> {
                         ),
                       ),
                     ),
+                    const Padding(padding: EdgeInsets.symmetric(horizontal: 4.0)),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,

@@ -115,7 +115,7 @@ class _ReviewViewState extends State<ReviewView> {
               Text("${review.rate}", style: TextStyle(color: Colors.white),),
             ],),
             const Padding(padding: EdgeInsets.symmetric(vertical: 2.0)),
-            Text(review.title, style: TextStyle(color: Colors.white),),
+            Text(review.title, style: TextStyle(color: Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis,),
             const Padding(padding: EdgeInsets.symmetric(vertical: 2.0)),
             Text(review.content, style: TextStyle(color: Colors.grey), maxLines: 5, overflow: TextOverflow.ellipsis,),
           ],

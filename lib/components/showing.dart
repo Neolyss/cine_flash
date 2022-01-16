@@ -15,7 +15,7 @@ class _NextShowingState extends State<NextShowing> {
       height: 150,
       child: Column(
         children: [
-          const Text("Prochaine séance la plus proche", style: TextStyle(color: Colors.white, fontSize: 24),),
+          const Text("Next nearest showing", style: TextStyle(color: Colors.white, fontSize: 24),),
           Expanded(
               child:
               Container(
@@ -28,7 +28,7 @@ class _NextShowingState extends State<NextShowing> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: const [
                         Text("Cinema Pathé Le Mans", style: TextStyle(color: Color(0xffDB162F)),),
-                        Time(hour: "20", min: "15", version: "VF"),
+                        Time(hour: "20", min: "15", version: "OV"),
                       ],
                     ),
                     OutlinedButton(

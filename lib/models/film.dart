@@ -15,7 +15,37 @@ Future<String> findFilm(String title) async {
   return id;
 }
 
-Future<Film> fetchFilm(String title) async {
+Future<Film> fetchFilm(String idFilm) async {
+  final response = await http.get(Uri.parse("https://imdb-api.com/en/API/Title/k_d439be7p/$idFilm/Ratings,"));
+  if(response.statusCode == 200) {
+    Map<String, dynamic> filmJson = jsonDecode(response.body);
+    Film film = Film.fromJson(filmJson);
+    final trailerResponse = await http.get(Uri.parse('https://imdb-api.com/en/API/YouTubeTrailer/k_d439be7p/$idFilm'));
+    if(response.statusCode == 200) {
+      Map<String, dynamic> trailerJson = jsonDecode(trailerResponse.body);
+      film.trailer = Trailer.fromJson(trailerJson);
+    }
+    final responseReviews = await http.get(Uri.parse('https://imdb-api.com/API/Reviews/k_d439be7p/$idFilm'));
+    if(responseReviews.statusCode == 200) {
+      Map<String, dynamic> jsonReviews = await jsonDecode(responseReviews.body);
+      List<Review> reviews = [];
+      jsonReviews["items"].map((i) => Review.fromJson(i)).forEach((e) => reviews.add(e));
+      film.reviews = reviews;
+    }
+    final responseMetacritics = await http.get(Uri.parse('https://imdb-api.com/API/MetacriticReviews/k_d439be7p/$idFilm'));
+    if(responseMetacritics.statusCode == 200) {
+      Map<String, dynamic> jsonMetacritics = await jsonDecode(responseMetacritics.body);
+      List<MetacriticReview> metacriticsReviews = [];
+      jsonMetacritics["items"].map((i) => MetacriticReview.fromJson(i)).forEach((e) => metacriticsReviews.add(e));
+      film.metacriticsReviews = metacriticsReviews;
+    }
+    return film;
+  } else {
+    throw Exception('Failed to load Film');
+  }
+}
+
+/*Future<Film> fetchFilm(String title) async {
   final String response = await rootBundle.loadString('json/test.json');
   Map<String, dynamic> json = await jsonDecode(response);
   //developer.log(json.toString());
@@ -38,7 +68,7 @@ Future<Film> fetchFilm(String title) async {
   film.filmCrew[0].image = jsonNm['image'];
 
   return film;
-  /*final filmResponse = await http.get(Uri.parse('https://imdb-api.com/en/API/SearchTitle/k_d439be7p/' + title));
+  final filmResponse = await http.get(Uri.parse('https://imdb-api.com/en/API/SearchTitle/k_d439be7p/' + title));
   if(filmResponse.statusCode == 200) {
     Map<String, dynamic> json = jsonDecode(filmResponse.body);
     developer.log(json.toString());
@@ -68,8 +98,8 @@ Future<Film> fetchFilm(String title) async {
     }
   } else {
     throw Exception('Failed to load Film');
-  }*/
-}
+  }
+}*/
 
 class Trailer{
   final String youtubeId;
@@ -185,7 +215,7 @@ class Person {
     required this.id,
     required this.name,
     required this.job,
-    this.image = "https://cdn.webshopapp.com/shops/70489/files/362433541/600x600x2/the-legend-of-zelda-link-canvas-40x40cm.jpg",
+    this.image = "https://www.kindpng.com/picc/m/207-2074624_white-gray-circle-avatar-png-transparent-png.png",
   });
 
   factory Person.fromJson(Map<String, dynamic> json, String job) {
