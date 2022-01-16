@@ -1,13 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/header.dart';
+import '../../main.dart';
 import 'history_screen.dart';
 import 'library_screen.dart';
 import 'main_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key,}) : super(key: key);
 
   static const routeName = '/';
 
@@ -18,7 +18,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<Widget> pageList = <Widget>[
     const HistoryScreen(),
-    const MainScreen(value: "Main "),
+    MainScreen(camera: camera,),
     const LibraryScreen(),
   ];
   int _selectedIndex = 1;

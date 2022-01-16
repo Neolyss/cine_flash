@@ -1,6 +1,19 @@
 import 'dart:convert';
-
 import 'package:flutter/services.dart';
+import 'dart:developer' as developer;
+import 'package:http/http.dart' as http;
+
+Future<String> findFilm(String title) async {
+  final filmResponse = await http.get(Uri.parse('https://imdb-api.com/en/API/SearchTitle/k_d439be7p/' + title));
+  String id = "";
+  if(filmResponse.statusCode == 200) {
+    Map<String, dynamic> json = jsonDecode(filmResponse.body);
+    developer.log(json.toString());
+    id = json['results'][0]['id'];
+    developer.log("Id Imdb du film => " + id);
+  }
+  return id;
+}
 
 Future<Film> fetchFilm(String title) async {
   final String response = await rootBundle.loadString('json/test.json');

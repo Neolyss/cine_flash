@@ -19,12 +19,16 @@ class FilmScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const FilmView();
+    ScreenArguments arg = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
+    developer.log(arg.title);
+    return FilmView(idFilm: arg.title,);
   }
 }
 
 class FilmView extends StatefulWidget {
-  const FilmView({Key? key}) : super(key: key);
+  const FilmView({Key? key, required this.idFilm}) : super(key: key);
+
+  final String idFilm;
 
   @override
   _FilmViewState createState() => _FilmViewState();
