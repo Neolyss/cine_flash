@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../models/film.dart';
@@ -20,9 +21,9 @@ class _ActorScrollViewState extends State<ActorScrollView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(padding: EdgeInsets.symmetric(vertical: 8.0),),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 8.0),),
           const Text("Actors", style: TextStyle(color: Colors.white),),
-          Padding(padding: EdgeInsets.symmetric(vertical: 8.0),),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 8.0),),
           SizedBox(
             height: 70,
             child: ListView.separated(
@@ -39,11 +40,12 @@ class _ActorScrollViewState extends State<ActorScrollView> {
                         radius: 56,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(100),
-                          child: Image.network(
-                            actor.image,
-                            fit: BoxFit.cover,
+                          child: CachedNetworkImage(
+                            placeholder: (context, url) => const CircularProgressIndicator(),
+                            imageUrl: actor.image,
                             width: 56,
                             height: 56,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
@@ -109,11 +111,12 @@ class _CrewScrollViewState extends State<CrewScrollView> {
                         radius: 56,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(100),
-                          child: Image.network(
-                            person.image,
-                            fit: BoxFit.cover,
+                          child: CachedNetworkImage(
+                            placeholder: (context, url) => const CircularProgressIndicator(),
+                            imageUrl: person.image,
                             width: 56,
                             height: 56,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
@@ -122,9 +125,9 @@ class _CrewScrollViewState extends State<CrewScrollView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(person.name, style: TextStyle(color: Colors
+                        Text(person.name, style: const TextStyle(color: Colors
                             .white,),),
-                        Text(person.job, style: TextStyle(color: Colors
+                        Text(person.job, style: const TextStyle(color: Colors
                             .grey,),),
                       ],
                     ),

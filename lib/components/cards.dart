@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../main.dart';
@@ -44,7 +45,11 @@ class _HistoryFilmCardState extends State<HistoryFilmCard> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.network(widget.filmCard.image,fit: BoxFit.fitHeight,),
+                CachedNetworkImage(
+                  placeholder: (context, url) => const CircularProgressIndicator(),
+                  imageUrl: widget.filmCard.image,
+                  fit: BoxFit.fitHeight,
+                ),
                 Text(widget.filmCard.title, textAlign: TextAlign.center, style: const TextStyle(fontSize: 20),),
                 const Icon(Icons.arrow_forward_rounded, color: Colors.black,),
               ],
@@ -82,7 +87,13 @@ class _LibraryFilmCardState extends State<LibraryFilmCard> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.network(filmCard.image, width: 175, height: 200, fit: BoxFit.cover),
+              CachedNetworkImage(
+                width: 175,
+                height: 200,
+                placeholder: (context, url) => const CircularProgressIndicator(),
+                imageUrl: filmCard.image,
+                fit: BoxFit.cover,
+              ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 height: 50,
