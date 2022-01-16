@@ -1,8 +1,10 @@
 import 'package:cine_flash/components/cards.dart';
 import 'package:cine_flash/models/filmCard.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:cine_flash/screens/film/film_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as developer;
+
+import '../../main.dart';
 
 class LibraryScreen extends StatefulWidget {
   const LibraryScreen({Key? key}) : super(key: key);
@@ -12,30 +14,67 @@ class LibraryScreen extends StatefulWidget {
 }
 
 class _LibraryScreenState extends State<LibraryScreen> {
+  final textController = TextEditingController();
   late Future<List<FilmCard>> _cards;
   late Future<List<FilmCard>> _cards2;
 
+
+  @override
+  void initState(){
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    textController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
     _cards = fetchFilms();
     _cards2 = fetchFilms2();
     return Scaffold(
       body: ListView(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
         children: [
           Column(
             children: [
-              const Padding(padding: EdgeInsets.symmetric(vertical: 8.0)),
               const Text("Library", style: TextStyle(fontSize: 40, color: Colors.white),),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.search_outlined),
-                      hintText: 'Enter a search term',
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Form(
+                    key: _formKey,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        icon: IconButton(
+                          icon: const Icon(Icons.search_outlined),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              //String id = await findFilm("Iron Man");
+                              String id = "tt0371746";
+                              Navigator.pushNamed(context, FilmScreen.routeName, arguments: ScreenArguments(id));
+                            }
+                          },
+                        ),
+                        hintText: 'Enter a search term',
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                      onFieldSubmitted: (value) async {
+                        //String id = await findFilm("Iron Man");
+                        String id = "tt0371746";
+                        Navigator.pushNamed(context, FilmScreen.routeName, arguments: ScreenArguments(id));
+                      },
                     ),
                   ),
                   decoration: BoxDecoration(
@@ -47,78 +86,76 @@ class _LibraryScreenState extends State<LibraryScreen> {
                   ),
                 ),
               ),
-              const Divider(height: 25,),
-              FutureBuilder<List<FilmCard>>(
-                  future: _cards,
-                  builder: (BuildContext context, snapshot) {
-                    if(snapshot.hasData) {
-                      List<FilmCard>? cards = snapshot.data;
-                      return SizedBox(
-                        height: 275,
-                        child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: cards!.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return LibraryFilmCard(filmCard: cards[index],);
-                          },
-                          separatorBuilder: (BuildContext context, int index) => const Divider(height: 5.0,),
-                        ),
-                      );
-                    } else if(snapshot.hasError) {
-                      return Text('${snapshot.error}');
-                    } else {
-                      return const CircularProgressIndicator();
-                    }
-                  }
-              ),
-              FutureBuilder<List<FilmCard>>(
-                  future: _cards2,
-                  builder: (BuildContext context, snapshot) {
-                    if(snapshot.hasData) {
-                      List<FilmCard>? cards = snapshot.data;
-                      return SizedBox(
-                        height: 275,
-                        child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: cards!.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Card(
-                              child: Container(
-                                width: 175,
-                                height: 300,
-                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 8.0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Image.network(cards[index].image, width: 175, height: 200, fit: BoxFit.cover),
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                      height: 50,
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(cards[index].title),
-                                          Text("${cards[index].imDbRating} / 10", style: TextStyle(color: Colors.grey),),
-                                        ],
-                                      ),
-                                    )
-
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                          separatorBuilder: (BuildContext context, int index) => const Divider(height: 5.0,),
-                        ),
-                      );
-                    } else if(snapshot.hasError) {
-                      return Text('${snapshot.error}');
-                    } else {
-                      return const CircularProgressIndicator();
-                    }
-                  }
+              const Divider(height: 15,),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Trending", style: TextStyle(fontSize: 30, color: Colors.white),),
+                  const Divider(height: 25,),
+                  Wrap(
+                    runSpacing: 20,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("MARVEL", style: TextStyle(fontSize: 15, color: Colors.white,),),
+                          FutureBuilder<List<FilmCard>>(
+                            future: _cards,
+                            builder: (BuildContext context, snapshot) {
+                              if(snapshot.hasData) {
+                                List<FilmCard>? cards = snapshot.data;
+                                return SizedBox(
+                                  height: 275,
+                                  child: ListView.separated(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: cards!.length,
+                                    itemBuilder: (BuildContext context, int index) {
+                                      return LibraryFilmCard(filmCard: cards[index],);
+                                    },
+                                    separatorBuilder: (BuildContext context, int index) => const Divider(height: 10.0,),
+                                  ),
+                                );
+                              } else if(snapshot.hasError) {
+                                return Text('${snapshot.error}');
+                              } else {
+                                return const CircularProgressIndicator();
+                              }
+                            }
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("STAR WARS", style: TextStyle(fontSize: 15, color: Colors.white),),
+                          FutureBuilder<List<FilmCard>>(
+                            future: _cards2,
+                            builder: (BuildContext context, snapshot) {
+                              if(snapshot.hasData) {
+                                List<FilmCard>? cards = snapshot.data;
+                                return SizedBox(
+                                  height: 275,
+                                  child: ListView.separated(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: cards!.length,
+                                    itemBuilder: (BuildContext context, int index) {
+                                      return LibraryFilmCard(filmCard: cards[index],);
+                                      },
+                                    separatorBuilder: (BuildContext context, int index) => const Divider(height: 10.0,),
+                                  ),
+                                );
+                              } else if(snapshot.hasError) {
+                                return Text('${snapshot.error}');
+                              } else {
+                                return const CircularProgressIndicator();
+                              }
+                            }
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ],
           ),

@@ -28,9 +28,9 @@ class _HistoryFilmCardState extends State<HistoryFilmCard> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(5),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
-                  offset: const Offset(
+                  offset: Offset(
                     2.0,
                     2.0,
                   ),
@@ -45,7 +45,7 @@ class _HistoryFilmCardState extends State<HistoryFilmCard> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Image.network(widget.filmCard.image,fit: BoxFit.fitHeight,),
-                Text(widget.filmCard.title, textAlign: TextAlign.center, style: TextStyle(fontSize: 20),),
+                Text(widget.filmCard.title, textAlign: TextAlign.center, style: const TextStyle(fontSize: 20),),
                 const Icon(Icons.arrow_forward_rounded, color: Colors.black,),
               ],
             ),
@@ -91,7 +91,7 @@ class _LibraryFilmCardState extends State<LibraryFilmCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(filmCard.title),
-                    Text("${filmCard.imDbRating} / 10", style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),),
+                    Text("${filmCard.imDbRating} / 10", style: const TextStyle(color: Colors.grey),),
                   ],
                 ),
               )
