@@ -39,7 +39,11 @@ class _WidgetAppBarState extends State<WidgetAppBar> {
         leading: Builder(builder: (context) => // Ensure Scaffold is in context
           buttonMenu()
         ),
-        title: Image.asset('images/CineIcon.png', fit: BoxFit.cover,),
+        title: Container(
+          padding: const EdgeInsets.all(4.0),
+          height: 56,
+          child: Image.asset('images/CineIcon.png', fit: BoxFit.scaleDown,),
+        ),
         centerTitle: true,
     );
   }

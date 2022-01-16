@@ -1,6 +1,6 @@
-import 'package:cine_flash/screens/result/reviews.dart';
+import 'package:cine_flash/components/reviews.dart';
 import 'package:cine_flash/screens/main/main_screens.dart';
-import 'package:cine_flash/screens/result/showing.dart';
+import 'package:cine_flash/components/showing.dart';
 import 'package:cine_flash/models/trailer.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -83,8 +83,14 @@ class _FilmViewState extends State<FilmView> {
                         child: Text(snapshot.data!.title, style: TextStyle(color: Colors.white, fontSize: 30),),
                       ),
                       SizedBox(height: 5,),
-                      Center(
-                        child: Text(date + " ⸱ " + time, style: TextStyle(color: Colors.grey, fontSize: 20),),
+                      Row(
+                        children: [
+                          Text(date, style: const TextStyle(color: Colors.grey, fontSize: 20),),
+                          const Text(" ⸱ ", style: TextStyle(color: Colors.grey, fontSize: 30)),
+                          Text(time, style: const TextStyle(color: Colors.grey, fontSize: 20),),
+                        ],
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                       ),
                       Space(10),
                       VideoWidget(youtubeId: snapshot.data!.trailer.youtubeId),

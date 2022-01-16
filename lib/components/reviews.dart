@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../models/film.dart';
+import '../models/film.dart';
 
 class ReviewsView extends StatefulWidget {
   final List<Review> reviews;
